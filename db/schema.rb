@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_27_065254) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_27_081059) do
   create_table "short_links", force: :cascade do |t|
-    t.string "original_url"
-    t.string "short_url"
-    t.datetime "expires_at"
+    t.string "original_url", null: false
+    t.string "slug"
+    t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["original_url"], name: "index_short_links_on_original_url", unique: true
+    t.index ["slug"], name: "index_short_links_on_slug", unique: true
   end
 
 end
