@@ -18,7 +18,7 @@ class ShortLinksController < ApplicationController
       return
     end
     
-    slug = url_param.split('/').last
+    slug = URI.parse(url_param).path[1..-1]
     short_link = ShortLink.find_by(slug: slug)
 
     if short_link.nil?
