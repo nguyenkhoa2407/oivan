@@ -3,6 +3,7 @@ class ShortLink < ApplicationRecord
 
   validates :original_url, presence: true, uniqueness: true
   validates :slug, uniqueness: true, allow_nil: true
+  validates :expires_at, presence: true
   validate :original_url_not_malformed
 
   after_create :generate_slug
